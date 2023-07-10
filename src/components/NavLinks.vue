@@ -26,7 +26,7 @@ const store = useCarefinderStore()
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/admin">Admin</RouterLink>
         <RouterLink v-if="store.isLoggedIn" to="/logout">Logout</RouterLink>
-        <RouterLink v-if="!store.isLoggedIn" to="/auth">Login {{ store.isLoggedIn }}</RouterLink>
+        <RouterLink v-if="!store.isLoggedIn" to="/auth">Login</RouterLink>
       </nav>
     </div>
     

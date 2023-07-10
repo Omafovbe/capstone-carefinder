@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { IUser } from '@/interfaces';
-import {useRouter } from 'vue-router'
+import { ref } from 'vue'
+
 import { useCarefinderStore } from '@/stores/carefinder'
+import type { IUser } from '@/types'
+import {useRouter } from 'vue-router'
 
 const store = useCarefinderStore()
 const router = useRouter()
@@ -55,4 +56,3 @@ h3 {
     border-radius: 5px;
 }
 </style>
-@/types@/stores/carefinder

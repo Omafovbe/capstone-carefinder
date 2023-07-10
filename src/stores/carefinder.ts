@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import {
-  db, auth, onAuthStateChanged, signInWithEmailAndPassword, updateProfile,
+  auth, onAuthStateChanged, signInWithEmailAndPassword, updateProfile,
   createUserWithEmailAndPassword, signOut
 } from '@/config/firebase'
 // import { useRouter } from 'vue-router'
@@ -21,14 +21,14 @@ import type { IUser } from '@/types'
 
 export const useCarefinderStore = defineStore('carefinder', () => {
   // const userDetails = ref({ displayName: '', email: '', password:'' })
-  const userDetails = ref<Partial<IUser>>({email:'', displayName:''})
+  const userDetails = ref({})
   const isLoggedIn = ref(false)
   const message = ref('')
   const createUser = async (user: IUser) => {
     await createUserWithEmailAndPassword(auth, user.email, user.password)
       .then(() => {
         
-        updateProfile(auth.currentUser, {
+        updateProfile(<any>auth.currentUser, {
           displayName: user.displayName
         })
       }).then(() => {
@@ -57,8 +57,9 @@ export const useCarefinderStore = defineStore('carefinder', () => {
       if (user) {
         isLoggedIn.value = true
         // console.log(user.uid)
-        userDetails.value = { displayName: user.displayName, email: user?.email, uid: user.uid }
-        console.log(userDetails)
+        const {uid, email, displayName} = user
+        userDetails.value = { uid, email, displayName}
+        // console.log(userDetails)
         return user
       }
 

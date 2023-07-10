@@ -1,5 +1,5 @@
 <template>
-    <div class="hero">
+    <div class="hero container">
         <div class="hero__content">
             <h2 class="hero__header">Find Health Centres near you easily and quickly </h2>
             <p>Welcome to carefinder, the premier online platform that connects users with healthcare providers near them for a seamless experience.</p>
@@ -63,6 +63,7 @@
 
 .btn:hover {
     background-color: #00bd7e;
+    color: #fff;
 }
 
 .form__group {

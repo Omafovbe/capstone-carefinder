@@ -5,15 +5,16 @@ import 'md-editor-v3/lib/style.css'
 
 const content = ref('')
 
-defineEmits(['update:content'])
 
-const changedtext = () => {
-    console.log(content)
-}
-const handleUpload = (file: any) => {
-  console.log(file)
-  return 'https://i.postimg.cc/52qCzTVw/pngwing-com.png'
-}
+// const changedtext = () => {
+//     console.log(content)
+//  @on-change="changedtext"
+// }
+
+// const handleUpload = (file: any) => {
+//   console.log(file)
+//   return 'https://i.postimg.cc/52qCzTVw/pngwing-com.png'
+// }
 
 console.log(content)
 
@@ -22,8 +23,10 @@ console.log(content)
     <MdEditor
         v-model="content" 
         language="en-US"
-        @on-change="changedtext"
+        
     />
+    <hr>
+    
 </template>
 
 <style scoped>

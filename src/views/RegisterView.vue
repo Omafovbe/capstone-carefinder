@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useCarefinderStore } from '@/stores/carefinder';
+import { useCarefinderStore } from '@/stores/carefinder'
 import { ref } from 'vue'
 
-import type { IUser } from '@/interfaces';
-import { useRouter } from 'vue-router';
+import type { IUser } from '@/types'
+import { useRouter } from 'vue-router'
 
 // const app_id = import.meta.env.VITE_APP_ID
 // const displayName = ref('')
@@ -45,4 +45,4 @@ const signUp = async () => {
         </form>
     </div>
     
-</template>@/types@/stores/carefinder
+</template>

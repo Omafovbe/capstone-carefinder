@@ -20,8 +20,11 @@
 @media (min-width: 1024px) {
   .about p {
     font-size: 20px;
-    padding: 2rem 0;
+    padding: 1.5rem;
     text-align: justify;
+    background-color: #fff;
+    border-radius: 10px;
+    
   }
 
   h1 {

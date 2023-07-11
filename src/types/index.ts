@@ -1,7 +1,7 @@
 export interface IUser {
     uid?: string,
-    displayName?: string | null,
-    email: string,
+    displayName?: string | any,
+    email: string | any,
     password: string,
 }
 
@@ -10,4 +10,9 @@ export interface IHealthSys {
     address: string,
     phone?: string,  
     email?: string
+}
+
+export interface Notify {
+    message: string,
+    status: string
 }

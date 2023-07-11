@@ -41,6 +41,7 @@ p {
 
 .bolder {
     font-weight: bold;
+    cursor: pointer;
 }
 
 </style>@/stores/carefinder

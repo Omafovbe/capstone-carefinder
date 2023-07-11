@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword, signOut
 } from '@/config/firebase'
 // import { useRouter } from 'vue-router'
-import type { IUser } from '@/types'
+import type { IUser, Notify } from '@/types'
 
 // export const useCounterStore = defineStore('counter', () => {
 //   const count = ref(0)
@@ -17,13 +17,12 @@ import type { IUser } from '@/types'
 //   return { count, doubleCount, increment }
 // })
 
-// const router = useRouter()
 
 export const useCarefinderStore = defineStore('carefinder', () => {
   // const userDetails = ref({ displayName: '', email: '', password:'' })
-  const userDetails = ref({})
+  const userDetails = ref<Partial<IUser>>({displayName:'user', email:'dummy@email.com'})
   const isLoggedIn = ref(false)
-  const message = ref('')
+  const notification = ref<Notify>({status:'',message:''})
   const createUser = async (user: IUser) => {
     await createUserWithEmailAndPassword(auth, user.email, user.password)
       .then(() => {
@@ -37,19 +36,26 @@ export const useCarefinderStore = defineStore('carefinder', () => {
         
       })
       .catch((err) => {
-        message.value = err.message
+        notification.value = {
+          status: 'error',
+          message: err.message
+        }
     })
 
   }
   const signInUser = async (user:IUser) => {
     await signInWithEmailAndPassword(auth, user.email, user.password)
-      .then((cred) => {
-        isLoggedIn.value = true        
-        console.log(cred.user.displayName)
-        // userDetails.value = { ...cred.user }
-        
+      .then(() => {
+        isLoggedIn.value = true
+        // console.log(cred.user)
+        // const {displayName, email, uid } = cred.user
+        // userDetails.value = {displayName, email, uid }
       }).catch((err) => {
-        message.value = err.message
+        notification.value = {
+          status: 'error',
+          message: err.message
+        }
+        // toast.error(err.message)
       })
   }
   const authUser = () => {
@@ -57,9 +63,9 @@ export const useCarefinderStore = defineStore('carefinder', () => {
       if (user) {
         isLoggedIn.value = true
         // console.log(user.uid)
-        const {uid, email, displayName} = user
-        userDetails.value = { uid, email, displayName}
-        // console.log(userDetails)
+        // const {uid, email, displayName} = user
+        userDetails.value = { uid:user.uid, displayName:user.displayName, email:user.email}
+        console.log(userDetails)
         return user
       }
 
@@ -81,7 +87,7 @@ export const useCarefinderStore = defineStore('carefinder', () => {
   }
 
   return {
-    userDetails, message, isLoggedIn,
+    userDetails, notification, isLoggedIn,
     authUser, signInUser, createUser,
     logout
   }

@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useCarefinderStore } from '@/stores/carefinder'
 import HomeView from '../views/HomeView.vue'
-import AdminView from '@/views/AdminView.vue'
+import AdminView from '@/views/admin/AdminView.vue'
+import Dashboard from '@/components/admin/AdminDashboard.vue'
+import Accounts from '@/components/admin/UserAccount.vue'
+import Hospitals from '@/components/admin/HospitalComp.vue'
 
 
 
@@ -24,9 +27,18 @@ const router = createRouter({
      
     },
     {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: () => import('@/views/NotFound.vue'),
+    },
+    {
       path: '/admin',
-      name: 'admin',
       component: AdminView,
+      children: [
+        {path:'', name:'admin.dashboard', component:Dashboard},
+        {path:'hospital', name:'admin.hospital', component:Hospitals},
+        {path:'account', name:'admin.account', component:Accounts},
+      ],
       meta: {
         requiresAuth: true,
       }
@@ -50,7 +62,6 @@ const router = createRouter({
           // console.log(dest)
           if (!from) { console.log('No from') }
           
-          console.log("running before hook");
           store.logout()
           return {
             name: 'auth'

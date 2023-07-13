@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { useCarefinderStore } from '@/stores/carefinder';
+
+const store = useCarefinderStore()
+</script>
 <template>
-    User Account
+    <pre>{{ store.userDetails }}</pre>
 </template>

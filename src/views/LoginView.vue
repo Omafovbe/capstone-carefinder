@@ -100,7 +100,7 @@ h3 {
 
 
 
-#authForm button {
+#authForm button, .btn {
     padding: .75rem;
     margin-top: 10px;
     display: block;
@@ -110,6 +110,7 @@ h3 {
     border-radius: 10px;
     font-size: 18px;
     transition: 0.3s;
+    cursor: pointer;
     background-color: hsla(160, 100%, 37%, 0.377);
     box-shadow: 2px 2px 10px rgba(100, 200, 130, 0.3);
 

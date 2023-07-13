@@ -83,7 +83,7 @@ const canUserAccess = (to: any): boolean => {
   return true
 }
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
   const canAccess: boolean = await canUserAccess(to)
  
   if (!canAccess) {

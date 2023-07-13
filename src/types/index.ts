@@ -5,11 +5,12 @@ export interface IUser {
     password: string,
 }
 
-export interface IHealthSys {
+export interface IHealthCare {
+    id?: string,
     name: string,
-    address: string,
-    phone?: string,  
-    email?: string
+    city: string,
+    state: string,  
+    details: string
 }
 
 export interface Notify {
